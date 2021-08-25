@@ -1,0 +1,19 @@
+schema {
+  query: Query
+}
+
+scalar DateTime
+
+interface Node {
+  id: ID!
+}
+
+type Query {
+  product(id: ID): Product
+}
+
+type Product implements Node {
+  id: ID!
+  description(truncateAt: Int): String!
+  body: String @deprecated(reason: "Use `description` instead")
+}
