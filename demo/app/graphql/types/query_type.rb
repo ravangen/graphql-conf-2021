@@ -7,11 +7,13 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    field :product, ProductType, null: false do
+      argument :id, ID, required: true
+    end
+    def product(id:)
+      type_name, item_id = GraphQL::Schema::UniqueWithinType.decode(id)
+      return nil if type_name != "Product"
+      Product.find(item_id)
     end
   end
 end

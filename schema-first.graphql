@@ -9,11 +9,13 @@ interface Node {
 }
 
 type Query {
-  product(id: ID): Product
+  product(id: ID!): Product
 }
 
 type Product implements Node {
   id: ID!
+  name: String!
   description(truncateAt: Int): String!
   body: String @deprecated(reason: "Use `description` instead")
+  createdAt: DateTime!
 }
