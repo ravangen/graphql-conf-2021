@@ -4,16 +4,18 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
-
-    field :product, ProductType, null: false do
+    field :product, ProductType, null: true do
       argument :id, ID, required: true
     end
     def product(id:)
       type_name, item_id = GraphQL::Schema::UniqueWithinType.decode(id)
       return nil if type_name != "Product"
       Product.find(item_id)
+    end
+
+    field :products, Types::ProductType.connection_type, null: false
+    def products
+        Product.all
     end
   end
 end

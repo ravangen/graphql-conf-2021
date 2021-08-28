@@ -8,8 +8,13 @@ Product = Struct.new(:id, :name, :description, :created_at) do
     self[:description]
   end
 
+  # HACK: Mimic ActiveRecord interface, this is a demo 🤷‍♂️
+
+  def self.all
+    [Product.find("Don't Panic")]
+  end
+
   def self.find(id)
-    # HACK: Hardcoded reesult, this is a demo 🤷‍♂️
     Product.new(
       id,
       "The Hitchhiker's Guide to the Galaxy",
