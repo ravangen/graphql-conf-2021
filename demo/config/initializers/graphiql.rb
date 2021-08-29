@@ -1,3 +1,4 @@
+GraphiQL::Rails.config.headers['Authorization'] = -> (context) { "#{context.params['schema']}" }
 GraphiQL::Rails.config.initial_query = <<-QUERY
 # Welcome to GraphiQL
 #

@@ -1,0 +1,28 @@
+# full-schema.graphql
+directive @visibility(
+  schema: SchemaType!
+) on OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION # ...
+
+enum SchemaType { INTERNAL PUBLIC }
+
+type Product implements Node {
+  # ...
+
+  # Server exposes field if execution context permits access to specific schema
+  # Acts as if did not exist as part of the schema (not discoverable)
+  costOfGoodsManufactured: Float @visibility(schema: INTERNAL)
+}
+
+# internal-schema.graphql
+type Product implements Node {
+  # ...
+
+  costOfGoodsManufactured: Float
+}
+
+# public-schema.graphql
+type Product implements Node {
+  # ...
+
+  # No costOfGoodsManufactured field
+}

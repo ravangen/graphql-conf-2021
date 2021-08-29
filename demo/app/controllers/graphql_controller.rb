@@ -9,8 +9,8 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      # HACK: If GraphiQL query params has schema=internal, then we allow access
+      has_internal_access: "internal".casecmp?(request.headers["Authorization"]) || false,
     }
     result = DemoSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result

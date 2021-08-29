@@ -20,5 +20,7 @@ module Types
     field :body, String, null: true, deprecation_reason: "Use `description` instead."
 
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    field :cost_of_goods_manufactured, Float, null: false, schema: :internal
   end
 end

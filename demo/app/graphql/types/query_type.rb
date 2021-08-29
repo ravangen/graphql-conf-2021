@@ -13,7 +13,7 @@ module Types
       Product.find(item_id)
     end
 
-    field :products, Types::ProductType.connection_type, null: false
+    field :products, ProductType.connection_type, null: false
     def products
         Product.all
     end
