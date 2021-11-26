@@ -1,5 +1,7 @@
 # Dynamic GraphQL Schemas
 
+For GraphQL Conf. 2021, see [recording](https://www.youtube.com/watch?v=tqKVmw68Rbk&list=PL5SvzogSTpeGhfTmXTOv22CCHPIDoz-px).
+
 The [`demo`](demo) folder contains an example [`graphql-ruby`](https://graphql-ruby.org/) server that implements [visibility](https://graphql-ruby.org/authorization/visibility.html) to hide parts of a schema based on execution context. Some notable files are:
 - [`GraphQL` controller](demo/app/controllers/graphql_controller.rb)
 - [`Schema` definition](demo/app/graphql/demo_schema.rb)
